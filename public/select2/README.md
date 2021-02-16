@@ -1,5 +1,4 @@
 Select2
-=======
 ![Build Status][github-actions-image]
 [![Financial Contributors on Open Collective](https://opencollective.com/select2/all/badge.svg?label=financial+contributors)](https://opencollective.com/select2) [![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)][cdnjs]
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)][jsdelivr]

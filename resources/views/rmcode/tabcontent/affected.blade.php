@@ -6,9 +6,7 @@
         <a href="/rmcode/manage/affected" class=" btn btn-warning btn-sm text-dark"><i class="fas fa-tasks"></i> จัดการข้อมูล</a>
     </div>
 </div>
-<<<<<<< HEAD
 
-=======
 
 <hr>
 <div>
