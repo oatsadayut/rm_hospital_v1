@@ -1,5 +1,3 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 <!-- - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
 - **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
@@ -46,3 +44,5 @@
 - git add . 
 - git commit -m "commit"
 - git push origin master
+
+## BY ICE
