@@ -31,7 +31,7 @@
 - [OP.GG](https://op.gg)
 - [云软科技](http://www.yunruan.ltd/) -->
 
-## Install Project
+## Install Project ระบบบริหารความเสี่ยงโรงพยาบาล
 ** Version : 1.64.2.16 **
 - 1.รันคำสั่ง : npm install
 - 2.รันคำสั่ง : composer install 
