@@ -47,6 +47,7 @@
                             <table id="tebal-1" class="table li table-bordered table-sm table-hover">
                                 <thead>
                                     <tr>
+                                        <th>#รหัส</th>
                                         <th>หัวข้อเหตุการณ์</th>
                                         <th>วันที่รายงาน</th>
                                         <th>วันที่เกิดเหตุ</th>
@@ -58,6 +59,7 @@
                                 <tbody>
                                     @foreach ($q as $r)
                                         <tr>
+                                            <td class=" bg-title-table">{{$r->rmmain_id}}</td>
                                             <td class=" bg-title-table">{{$r->rmmain_topic}}</td>
                                             <td>{{DateThai($r->rmmain_daterp)}}</td>
                                             <td>{{DateThai($r->rmmain_dateon)}}</td>
@@ -115,6 +117,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>#รหัส</th>
                                         <th>หัวข้อเหตุการณ์</th>
                                         <th>วันที่รายงาน</th>
                                         <th>วันที่เกิดเหตุ</th>
