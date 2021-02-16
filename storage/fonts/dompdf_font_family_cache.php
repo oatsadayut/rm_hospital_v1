@@ -88,6 +88,6 @@
     'bold' => $fontDir . '/thsarabunnew-bold_4bcd03741368b1d528053055bcc7f9e1',
     'italic' => $fontDir . '/thsarabunnew-italic_d11c019dda81054a0fd98d80234a2661',
     'bold_italic' => $fontDir . '/thsarabunnew-bold-italic_014de6bbec3b5d2ceda8dbfd9133d6da',
->>>>>>> 80a11cda8d22f017e890ae5582d63472df11c23e
+
   ),
 ) ?>

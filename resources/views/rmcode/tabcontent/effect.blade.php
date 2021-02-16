@@ -1,8 +1,5 @@
 {{-- Modal --}}
-<<<<<<< HEAD
-
-=======
->>>>>>> 80a11cda8d22f017e890ae5582d63472df11c23e
+ 
 <!-- Modal -->
 <div class="modal fade" id="modaladdeffect" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">

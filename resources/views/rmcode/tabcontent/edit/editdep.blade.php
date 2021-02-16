@@ -8,10 +8,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-<<<<<<< HEAD
-
-=======
->>>>>>> 80a11cda8d22f017e890ae5582d63472df11c23e
+ 
                     <form method="POST" action="{{route('rmeditdep')}}">
                         @csrf
                             <div class="row">
