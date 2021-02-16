@@ -38,6 +38,11 @@
 - 3.สร้างไฟล์ .env แล้วนำค่า Config มาใช้งาน
 
 ## Git 
+- git init
+- git add . 
+- git commit -m "commit"
+- git remote add origin git@github.com:your-username/your-repository.git
+- //-----------------------
 - git add . 
 - git commit -m "commit"
 - git push origin master
