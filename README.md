@@ -36,3 +36,8 @@
 - 1.รันคำสั่ง : npm install
 - 2.รันคำสั่ง : composer install 
 - 3.สร้างไฟล์ .env แล้วนำค่า Config มาใช้งาน
+
+## Git 
+- git add . 
+- git commit -m "commit"
+- git push origin master
