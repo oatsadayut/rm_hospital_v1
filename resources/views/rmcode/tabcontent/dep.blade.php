@@ -6,7 +6,6 @@
         <a href="/rmcode/manage/dep" class=" btn btn-warning btn-sm text-dark"><i class="fas fa-tasks"></i> จัดการข้อมูล</a>
     </div>
 </div>
-
 <hr>
 <div>
     <table id="tebal-setting2" class="table table-sm table-hover">

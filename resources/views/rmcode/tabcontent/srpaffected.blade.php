@@ -6,7 +6,6 @@
         <a href="/rmcode/manage/srpaffected" class=" btn btn-warning btn-sm text-dark"><i class="fas fa-tasks"></i> จัดการข้อมูล</a>
     </div>
 </div>
-
 <hr>
 <div>
     <table id="tebal-setting20" class="table table-sm table-hover">

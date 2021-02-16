@@ -8,7 +8,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-
                     <form method="POST" action="{{route('rmeditsource')}}">
                         @csrf
                             <div class="row">
