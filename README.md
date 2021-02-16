@@ -78,7 +78,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 ## Install Project
-Version : 1.64.2.16 **
+** Version : 1.64.2.16 **
 - 1.รันคำสั่ง : npm install
 - 2.รันคำสั่ง : composer install 
 - 3.สร้างไฟล์ .env แล้วนำค่า Config มาใช้งาน
