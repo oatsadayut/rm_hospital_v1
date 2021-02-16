@@ -81,7 +81,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 =======
 
 ## Install Project
-Version : 1.64.2.15
+Version : 1.64.2.16
 - 1.รันคำสั่ง : npm install
 - 2.รันคำสั่ง : composer install 
 - 3.สร้างไฟล์ .env แล้วนำค่า Config มาใช้งาน
