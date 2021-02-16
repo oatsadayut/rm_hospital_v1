@@ -80,6 +80,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Install Project
 
-1.npm install
-2.crate .env File And Copy Text To File .env
-3.composer update
+- 1.npm install
+- 2.crate .env File And Copy Text To File .env
+- 3.composer update
