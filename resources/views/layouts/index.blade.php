@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>RM โรงพยาบาลหนองหงส์</title>
+    <title>RM <?php echo env("APP_TITLE"); ?></title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

@@ -56,7 +56,7 @@
 <body>
 @include('function.dathai')
 <div class="head">
-    <img src="./img/logo_2.jpg" width="80px"></td>
+    <img src="./img/<?php echo env("APP_LOGO_FILENAME"); ?>" width="80px"></td>
 </div>
 <div>
     <h2>

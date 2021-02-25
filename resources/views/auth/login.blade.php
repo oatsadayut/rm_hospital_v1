@@ -8,8 +8,8 @@
               <div class="row">
                 <div class="col-md-12">
                     <div class=" text-center">
-                        <img src="/img/logo_2.jpg" alt="logo" width="85">
-                        <h4 class="mt-3 text-center">RM โรงพยาบาลหนองหงส์</h4>
+                        <img src="/img/<?php echo env("APP_LOGO_FILENAME"); ?>" alt="logo" width="85">
+                        <h4 class="mt-3 text-center">RM <?php echo env("APP_TITLE"); ?></h4>
                     </div>
                   <hr />
                   <div>
@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="card-footer bg-foot-b text-light text-center mt-1">
-              <small>© 2020 โรงพยาบาลหนองหงส์ Vsersion: <?php echo env("VERSION"); ?> BY Samitra</small>
+              <small>© 2020 <?php echo env("APP_TITLE"); ?> Version: <?php echo env("VERSION"); ?> BY Samitra</small>
             </div>
           </div>
         </div>

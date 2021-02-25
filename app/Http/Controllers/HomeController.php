@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Alert;
 use Illuminate\Http\Request;
 
