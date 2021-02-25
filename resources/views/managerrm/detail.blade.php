@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+@include('function.dathai')
     {{-- Modal --}}
 
     <!-- Modal ทบทวน -->
@@ -146,8 +146,8 @@
 
                             <div class="col-md-6">
                                 <h5><span class=" text-secondary"> แหล่งข้อมูล :</span> {{ $q->source->source_name }}</h5>
-                                <h5><span class=" text-secondary"> วัน/เวลา ที่เกิดเหตุ :</span> {{ $q->rmmain_dateon }}
-                                    {{ $q->rmmain_time }} {{ $q->rm_part_time }}</h5>
+                                <h5><span class=" text-secondary"> วัน/เวลา ที่เกิดเหตุ :</span>{{DateThai($q->rmmain_dateon)}}
+                                  เวลา :{{ $q->rmmain_time }} เวร :{{ $q->rm_part_time }}</h5>
                                 <h5><span class=" text-secondary">สถานที่เกิดเหตุ :</span>
                                     @if ($q->rm_point != null || $q->rm_point != '')
                                         {{ $q->c_dep->dep_name }}
@@ -318,8 +318,8 @@
                         <hr>
                         <div class=" row bg-detail-rm p-2">
                             <div class="col-md-12">
-                                <h5><span class=" text-secondary">วันที่ทบทวน :</span> {{ $q->rm_date_review }}</h5>
-                                <h5><span class=" text-secondary">การทบทวน :</span> {{ $q->system->system_name }}</h5>
+                                <h5><span class=" text-secondary">วันที่ทบทวน : </span>{{DateThai($q->rm_date_review)}}</h5>
+                                <h5><span class=" text-secondary">การทบทวน : </span>{{ $q->system->system_name }}</h5>
                             </div>
                         </div>
                         <hr>
