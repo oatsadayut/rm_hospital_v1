@@ -31,15 +31,14 @@ class ManagerrmController extends Controller
         $date_first = date('Y-m-01');
         $date_last = date('Y-m-t');
 
-        if(Auth::user()->permission == 3){
+        if(Auth::user()->permission >= 3){
             $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('status','Y')->get();
         }else{
-            $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])
-                            ->where('rmmain_cidwr',Auth::user()->cid)
-                            ->where('status','Y')
-                            ->get();
+             $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])
+                             ->where('rmmain_cidwr',Auth::user()->cid)
+                             ->where('status','Y')
+                             ->get();
         }
-
 
         return view('managerrm.index',[
             'q'=>$q,
