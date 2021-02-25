@@ -16,7 +16,7 @@
 
             <form method="POST" action="{{ route('person-add') }}">
                 @csrf
-
+                
                 <div class="modal-body">
                     <div class="form-row mb-3">
                         <div class="col-md-12">

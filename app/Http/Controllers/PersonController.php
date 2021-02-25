@@ -27,8 +27,17 @@ class PersonController extends Controller
     }
 
     public function add(Request $request){
+        $request->validate([
+            'person_cid' => 'required',
+            'person_fname' => 'required',
+            'person_lname' => 'required',
+            'dep_code' => 'required',
+
+        ]);
+
         if (isset($_POST['btn-submit'])) {
-            $person = Person::where('person_cid',$request->person_cid)->where('status','Y')->count();
+
+            $person = Person::where('person_cid',$request->person_cid)->count();
             if($person == 0){
                 $q = new Person;
                 $q->person_cid = $request->person_cid;
@@ -39,11 +48,13 @@ class PersonController extends Controller
                 $q->save();
                 Alert::success('บันทึกข้อมูลเรียบร้อย', 'บันทึกข้อมูลบุคลากรเรียบร้อย กรุณาตรวจสอบความถูกต้องอีกครั้ง');
             }else{
-                Alert::error('เกิดข้อผิดพลาด', 'มีบุคคลกรในระบบที่ใช้ CID นี้อยู่แล้ว กรุณาตรวจสอบอีกครั้ง');
+                Alert::error('เกิดข้อผิดพลาด', 'มีผู้ใช้เลขบัตรประชาชนนี้แล้ว กรุณาตรวจสอบอีกครั้ง');
             }
+
         }else{
             Alert::error('เกิดข้อผิดพลาด', 'ไม่สามารถบันทึกข้อมูลบุคลากรได้ กรุณาตรวจสอบอีกครั้ง');
         }
+
         return back();
     }
 
