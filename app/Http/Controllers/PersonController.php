@@ -65,6 +65,12 @@ class PersonController extends Controller
     }
 
     public function update(Request $request){
+        $request->validate([
+            'person_fname' => 'required',
+            'person_lname' => 'required',
+            'dep_code' => 'required',
+        ]);
+        
         if (isset($_POST['btn-submit'])) {
             $q = DB::table('person')
             ->where('person_id', $request->person_id)

@@ -10,7 +10,15 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>เกิดข้อผิดพลาดกรุณาตรวจสอบอีกครั้ง {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class=" row">
                         <div class="col-md-6">
                             <h4>แก้ไขบุคคลากร</h4>
@@ -22,6 +30,18 @@
                             <form method="POST" action="{{ route('person-update') }}">
                             @csrf
                                 <div class="form-row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="person_fname">ชื่อ <span class=" text-danger">*</span></label>
+                                            <input id="person_fname" name="person_fname" type="text" class="form-control" value="{{$g_person->person_fname}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="person_lname">สกุล <span class=" text-danger">*</span></label>
+                                            <input id="person_lname" name="person_lname" type="text" class="form-control" value="{{$g_person->person_lname}}" required>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="person_cid">เลขบัตรประชาชน CID <span class=" text-danger">*</span></label>
@@ -53,19 +73,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="person_fname">ชื่อ <span class=" text-danger">*</span></label>
-                                            <input id="person_fname" name="person_fname" type="text" class="form-control" value="{{$g_person->person_fname}}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="person_lname">สกุล <span class=" text-danger">*</span></label>
-                                            <input id="person_lname" name="person_lname" type="text" class="form-control" value="{{$g_person->person_lname}}" required>
-                                        </div>
-                                    </div>
-
                                     <div class="col-md-12">
                                         <hr>
                                         <input type="hidden" name="person_id" value="{{$g_person->person_id}}">
