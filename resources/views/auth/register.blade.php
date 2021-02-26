@@ -35,7 +35,6 @@
                                 </span>
                             @enderror
                         </div>
-
                         <h5>รหัสผ่าน</h5>
                         <div class="input-group mb-4">
                             <div class="input-group-prepend">
