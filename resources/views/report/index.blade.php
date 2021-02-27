@@ -43,6 +43,15 @@
                                       </button>
                                     </td>
                                   </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td>รายงานภาพรวมความเสี่ยง กรรมการที่เกี่ยวข้อง (ทีม)</td>
+                                    <td>
+                                      <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#printcommitteerm">
+                                        Print PDF <i class="far fa-file-pdf"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
                                 </tbody>
                               </table>
                         </div>

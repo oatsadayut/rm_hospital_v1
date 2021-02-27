@@ -36,6 +36,7 @@ Route::group(['middleware' => ['user']], function () {
     //pdf รายงานความเสี่ยง
     Route::get('/rm/report/pdf/allrm','PrintrmController@report_all_summary_rm')->name('report_all_summary_rm');
     Route::get('/rm/report/pdf/deprm','PrintrmController@report_dep_summary_rm')->name('report_dep_summary_rm');
+    Route::get('/rm/report/pdf/committeerm','PrintrmController@report_committee_summary_rm')->name('report_committee_summary_rm');
 
 
 
@@ -65,7 +66,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/user/cancel', 'UserController@cancel')->name('user-cancel');
     Route::post('/user/unblock', 'UserController@unblock')->name('user-unblock');
     Route::post('/user/block', 'UserController@block')->name('user-block');
-    
+
     Route::post('/user/edit', 'UserController@edit')->name('user-edit');
 
     //ตั้งค่ารหัสความเสี่ยง
