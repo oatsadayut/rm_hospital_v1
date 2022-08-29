@@ -38,6 +38,10 @@ class Rmmain extends Model
         return $this->hasOne(Co_sex::class,'code','rm_affected_sex');
     }
 
+    public function c_deprp(){
+        return $this->hasOne(Co_dep::class,'dep_code','rmmain_deprp');
+    }
+
     public function c_dep(){
         return $this->hasOne(Co_dep::class,'dep_code','rm_point');
     }

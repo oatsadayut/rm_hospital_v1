@@ -61,6 +61,7 @@
                                         <th>#รหัส</th>
 
                                         <th>หัวข้อเหตุการณ์</th>
+                                        <th>หน่วยงาน</th>
                                         <th>วันที่รายงาน</th>
                                         <th>วันที่เกิดเหตุ</th>
                                         <th>ความรุนแรง</th>
@@ -73,6 +74,7 @@
                                         <tr>
                                             <td class=" bg-title-table">{{$r->rmmain_id}}</td>
                                             <td class=" bg-title-table">{{$r->rmmain_topic}}</td>
+                                            <td>{{$r->c_deprp->dep_name}}</td>
                                             <td>{{DateThai($r->rmmain_daterp)}}</td>
                                             <td>{{DateThai($r->rmmain_dateon)}}</td>
                                             @if ($r->level_code == 1)
