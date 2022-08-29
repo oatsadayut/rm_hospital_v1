@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>RM โรงพยาบาลหนองหงส์</title>
+    <title>RM <?php echo env("APP_TITLE"); ?></title>
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -27,7 +27,7 @@
     @include('sweetalert::alert')
 
     <nav class="navbar navbar-dark sticky-top bg-foot-b flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">RM โรงพยาบาลหนองหงส์ <small>v.<?php echo env("VERSION"); ?></small></a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo env("APP_TITLE"); ?> <small>v.<?php echo env("VERSION"); ?></small></a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
             <a class="nav-link" href="{{ route('logout') }}"

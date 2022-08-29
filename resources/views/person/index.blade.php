@@ -13,7 +13,15 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>เกิดข้อผิดพลาดกรุณาตรวจสอบอีกครั้ง {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form method="POST" action="{{ route('person-add') }}">
                 @csrf
 

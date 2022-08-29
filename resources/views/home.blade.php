@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <img src="/img/logo_2.jpg" alt="logo" width="150">
-                    <h2 class=" mt-2">RM โรงพยาบาลหนองหงส์</h2>
+                    <img src="/img/<?php echo env("APP_LOGO_FILENAME"); ?>" alt="logo" width="150">
+                    <h2 class=" mt-2"><?php echo env("APP_TITLE"); ?></h2>
                     <h4>ระบบบันทึกความเสี่ยง โรงพยาบาล</h4>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="row my-5">
                 <div class="col-md-12 text-center">
-                    <h5 class=" text-danger">ระบบอยู่ในระหว่างการพัฒนาและปรับปรุง Version :<?php echo env("VERSION"); ?></h5>
+                    <small class="h5 text-secondary">By Samitra Version :<?php echo env("VERSION"); ?></small>
                 </div>
             </div>
         </div>

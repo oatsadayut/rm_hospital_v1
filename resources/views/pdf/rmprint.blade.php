@@ -51,7 +51,7 @@
 <body>
 @include('function.dathai')
 <div>
-    <img src="./img/logorm.png" width="250px"></td>
+    <img src="./img/<?php echo env("APP_LOGO_REPORT_FILENAME"); ?>" width="250px"></td>
     <hr>
 </div>
 <div>

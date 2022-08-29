@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Co_dep;
+use App\Co_committee;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
     public function index(){
         $dep = Co_dep::where('status','Y')->get();
-        return view('report.index',['dep'=>$dep]);
+        $committee = Co_committee::where('status','Y')->get();
+
+        return view('report.index',['dep'=>$dep,'committee'=>$committee]);
     }
 
     public function view_report_getpointdep(){

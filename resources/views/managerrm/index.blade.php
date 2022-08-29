@@ -6,8 +6,6 @@
     <span>HOME > จัดการความเสี่ยง</span>
 </div>
 
-
-
 <div class="container-fluid">
     <div class="row justify-content-center mb-4">
         <div class="col-md-12">
@@ -21,7 +19,7 @@
                     </div>
                     <form action="{{ route('managerrm_getdate') }}" method="get">
                     <div class=" row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ตั้งแต่</span>
@@ -29,12 +27,23 @@
                             <input type="date" class="form-control" name="date_first" value="{{$date_first}}">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ถึง</span>
                             </div>
                             <input type="date" class="form-control" name="date_last" value="{{$date_last}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">หน่วยงาน</label>
+                                <select class="form-control" id="inputGroupSelect01" name="dep">
+                                    <option value="0" {{($dep == "0") ? "selected" : ""}}>ทั้งหมด</option>
+                                    @foreach ($q_dep as $r)
+                                        <option value="{{ $r->dep_code }}" {{($r->dep_code == $dep) ? "selected" : ""}}>{{ $r->dep_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3">

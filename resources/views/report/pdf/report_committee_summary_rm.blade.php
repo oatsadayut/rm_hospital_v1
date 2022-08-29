@@ -43,15 +43,15 @@
             margin-left: 11.5rem;
             margin-bottom: 0px;
         }
-        .report-dep{
-            margin-left: 12.5rem;
+        .report-committee{
+            margin-left: 16.1rem;
             margin-bottom: 0px;
         }
         .row-w{
             width: 150px;
         }
     </style>
-<title>ภาพรวมความเสี่ยง หน่วยงาน</title>
+<title>ภาพรวมความเสี่ยง กรรมการที่เกี่ยวข้อง(ทีม)</title>
 </head>
 <body>
 @include('function.dathai')
@@ -61,7 +61,7 @@
 <div>
     <h2>
         <span class="report-name">รายงานภาพรวมความเสี่ยง</span><br>
-        <span class="report-dep">หน่วยงาน : {{$q_dep->dep_name}} [{{$q_dep->dep_ename}}]</span><br>
+        <span class="report-committee">กรรมการ (ทีม) : {{$q_committee->committee_name}}</span><br>
         <small class="report-date">ช่วงวันที่ : {{DateThai($date_start)}} ถึง {{DateThai($date_end)}}</small>
     </h2>
 
@@ -160,54 +160,6 @@
 <div>
     <table style="width:100%; border-collapse: collapse;">
         <tr>
-            <td style="vertical-align: top;">
-                <table>
-                    <thead style="font-size: 25px;">
-                      <tr>
-                        <th colspan="2" scope="col">กรรมการที่เกี่ยวข้อง</th>
-                      </tr>
-                    </thead>
-                    <tbody style="font-size: 21px;">
-                        <tr>
-                            <td><b>PCT Clinic :</b></td>
-                            <td><b>{{$q_committee_PCT}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>PTC เภสัช :</b></td>
-                            <td><b>{{$q_committee_PTC}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>IC :</b></td>
-                            <td><b>{{$q_committee_IC}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>ENV :</b></td>
-                            <td><b>{{$q_committee_ENV}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>EQU :</b></td>
-                            <td><b>{{$q_committee_EQU}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>IM :</b></td>
-                            <td><b>{{$q_committee_IM}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>HRD :</b></td>
-                            <td><b>{{$q_committee_HRD}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>RM :</b></td>
-                            <td><b>{{$q_committee_RM}} ครั้ง</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>ไม่ระบุ :</b></td>
-                            <td><b>{{$q_committee_null}} ครั้ง</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-
             <td style="vertical-align: top;">
                 <table >
                     <thead style="font-size: 25px;">
