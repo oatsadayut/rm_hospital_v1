@@ -62,14 +62,25 @@
                     <i class="fas fa-tasks"></i> จัดการความเสี่ยง
                   </a>
                 </li>
-                @if (Auth::user()->permission >= 2)
-                    <li class="nav-item">
-                        <a class="nav-link" href="/rm/report">
-                            <i class="fas fa-book-open"></i> รายงาน
-                        </a>
-                    </li>
-                @endif
               </ul>
+
+                @if (Auth::user()->permission >= 2)
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Admin Panal</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/rm/report">
+                                <i class="fas fa-book-open"></i> รายงาน
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/rm/export/viewer">
+                                <i class="fas fa-book-open"></i> ส่งออกข้อมูล
+                            </a>
+                        </li>
+                    </ul>
+                @endif
 
               @if (Auth::user()->permission == 3 || Auth::user()->permission == 4)
               <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -110,7 +121,6 @@
 
         </div>
       </div>
-
 
 <script src="{{ asset('js/temapp.js') }}"></script>
 <script src="{{ asset('chart.js/dist/Chart.bundle.min.js')}}"></script>

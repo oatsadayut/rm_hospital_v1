@@ -69,6 +69,10 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::post('/user/edit', 'UserController@edit')->name('user-edit');
 
+    //Export RM
+    Route::get('/rm/export/viewer', 'ExportController@rmindex')->name('view-export-rm');
+    Route::get('/rm/export', 'ExportController@rmexport')->name('export-rm');
+
     //ตั้งค่ารหัสความเสี่ยง
     Route::get('/rmcode','RmcodeController@index')->name('rmcode');
 
