@@ -222,3 +222,9 @@ body {
     background-color: #38023c;
 }
 
+.text-wrap{
+    white-space:normal;
+}
+.width-wrap{
+    width:10px;
+}

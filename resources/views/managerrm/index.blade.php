@@ -54,14 +54,14 @@
                     </form>
                     <div class=" row">
                         <div class="col-md-12">
-                            <table id="tebal-1" class="table li table-bordered table-sm table-hover">
+                            <table id="tebal-1" class="table li table-bordered table-sm table-hover" style="width:100%">
                                 <thead>
                                     <tr>
 
                                         <th>#รหัส</th>
 
                                         <th>หัวข้อเหตุการณ์</th>
-                                        <th>หน่วยงาน</th>
+                                        <th>หน่วยงานที่เกี่ยวข้อง</th>
                                         <th>วันที่รายงาน</th>
                                         <th>วันที่เกิดเหตุ</th>
                                         <th>ความรุนแรง</th>
@@ -72,67 +72,69 @@
                                 <tbody>
                                     @foreach ($q as $r)
                                         <tr>
-                                            <td class=" bg-title-table">{{$r->rmmain_id}}</td>
-                                            <td class=" bg-title-table">{{$r->rmmain_topic}}</td>
-                                            <td>{{$r->c_deprp->dep_name}}</td>
-                                            <td>{{DateThai($r->rmmain_daterp)}}</td>
-                                            <td>{{DateThai($r->rmmain_dateon)}}</td>
+                                            <td class=" bg-title-table" style="width:5%">{{$r->rmmain_id}}</td>
+                                            <td class=" bg-title-table" style="width:25%">{{$r->rmmain_topic}}</td>
+                                            <td style="width:22%">{{$r->rmdepname}}</td>
+                                            <td style="width:10%">{{DateThai($r->rmmain_daterp)}}</td>
+                                            <td style="width:10%">{{DateThai($r->rmmain_dateon)}}</td>
                                             @if ($r->level_code == 1)
-                                                <td><span class="badge c-a">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-a">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 2)
-                                                <td><span class="badge c-b">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-b">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 3)
-                                                <td><span class="badge c-c">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-c">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 4)
-                                                <td><span class="badge c-d">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-d">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 5)
-                                                <td><span class="badge c-e">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-e">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 6)
-                                                <td><span class="badge c-f">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-f">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 7)
-                                                <td><span class="badge c-g">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-g">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 8)
-                                                <td><span class="badge c-h">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-h">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 9)
-                                                <td><span class="badge c-i">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-i">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 10)
-                                                <td><span class="badge c-a">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-a">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 11)
-                                                <td><span class="badge c-b">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-b">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 12)
-                                                <td><span class="badge c-c">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-c">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 13)
-                                                <td><span class="badge c-d">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-d">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 14)
-                                                <td><span class="badge badge-secondary">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge badge-secondary">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 16)
-                                                <td><span class="badge c-a">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-a">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 17)
-                                                <td><span class="badge c-b">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-b">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 18)
-                                                <td><span class="badge c-c">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-c">{{$r->rmlevel}}</span></td>
                                             @elseif($r->level_code == 19)
-                                                <td><span class="badge c-d">{{$r->level->level_name}}</span></td>
+                                                <td style="width:8%"><span class="badge c-d">{{$r->rmlevel}}</span></td>
                                             @else
-                                                <td><span class="badge badge-secondary">ไม่ได้ลงข้อมูล</span></td>
+                                                <td style="width:8%"><span class="badge badge-secondary">ไม่ได้ลงข้อมูล</span></td>
                                             @endif
 
                                             @if ($r->system_code == 1)
-                                                <td><span class="badge badge-warning">{{$r->system->system_name}}</span></td>
+                                                <td style="width:10%"><span class="badge badge-warning">{{$r->system_name}}</span></td>
                                             @elseif($r->system_code == 2)
-                                                <td><span class="badge badge-success">{{$r->system->system_name}}</span></td>
+                                                <td style="width:10%"><span class="badge badge-success">{{$r->system_name}}</span></td>
                                             @else
-                                                <td><span class="badge badge-secondary">{{$r->system->system_name}}</span></td>
+                                                <td style="width:10%"><span class="badge badge-secondary">{{$r->system_name}}</span></td>
                                             @endif
 
-                                            <td><a href="{{action('ManagerrmController@detail',$r->rmmain_id)}}" class=" btn btn-primary btn-block btn-sm">รายละเอียด</a></td>
+                                            <td style="width:10%"><a href="{{action('ManagerrmController@detail',$r->rmmain_id)}}" class=" btn btn-primary btn-block btn-sm">รายละเอียด</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>#รหัส</th>
+
                                         <th>หัวข้อเหตุการณ์</th>
+                                        <th>หน่วยงาน</th>
                                         <th>วันที่รายงาน</th>
                                         <th>วันที่เกิดเหตุ</th>
                                         <th>ความรุนแรง</th>

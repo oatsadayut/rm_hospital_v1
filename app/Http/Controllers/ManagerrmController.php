@@ -9,6 +9,9 @@ use App\Co_system;
 use App\Co_dep;
 use App\Co_affected_person;
 use App\Rmmain;
+use App\RmList;
+use App\Rmlistall;
+use App\Rmlistdep;
 use App\Rmrisk;
 use App\Person;
 use App\User;
@@ -32,11 +35,10 @@ class ManagerrmController extends Controller
         $date_last = date('Y-m-t');
 
         if(Auth::user()->permission >= 3){
-            $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('status','Y')->get();
+             $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
         }else{
-             $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])
+             $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])
                              ->where('rmmain_cidwr',Auth::user()->cid)
-                             ->where('status','Y')
                              ->get();
         }
 
@@ -53,22 +55,29 @@ class ManagerrmController extends Controller
     }
 
     public function getdate(Request $request){
+
         $date_first = $request->date_first;
         $date_last = $request->date_last;
         $dep = $request->dep;
+
         $q_dep = Co_dep::where('status','Y')->get();
-        
+
         if(Auth::user()->permission >= 3){
-            if($dep === "0"){
-                $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('status','Y')->get();
+            if($dep == "0"){
+                $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
             }else{
-                $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('rmmain_deprp',$dep)->where('status','Y')->get();
+                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+                                ->where('rmdepcode',$dep)
+                                ->get();
             }
         }else{
-            if($dep === "0"){
-                $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('rmmain_cidwr',Auth::user()->cid)->where('status','Y')->get();
+            if($dep == "0"){
+                $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])
+                                ->where('rmmain_cidwr',Auth::user()->cid)->get();
             }else{
-                $q = Rmmain::whereBetween('rmmain_daterp', [$date_first, $date_last])->where('rmmain_deprp',$dep)->where('rmmain_cidwr',Auth::user()->cid)->where('status','Y')->get();
+                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+                                ->where('rmdepcode','LIKE','%'.$dep.'%')
+                                ->where('rmmain_cidwr',Auth::user()->cid)->get();
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Rmmain;
+use App\Rmlistall;
+use App\Rmlistdep;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -37,23 +39,15 @@ class RmExport implements FromQuery,WithHeadings
     public function query()
     {
         if($this->dep === "0"){
-            return  Rmmain::query()->select('rmmain.rmmain_id','rmmain.rmmain_dateon','rmmain.rmmain_time','co_dep.dep_name','rmmain.rmmain_topic','rmmain.rmmain_detail','co_level.level_name','co_level.level_detail','person.person_fname','person.person_lname','rmmain.created_at')
-                                    ->join('co_dep', 'co_dep.dep_code', '=', 'rmmain.rmmain_deprp')
-                                    ->join('co_level', 'co_level.level_code', '=', 'rmmain.level_code')
-                                    ->join('person', 'person.person_cid', '=', 'rmmain.rmmain_cidrp')
-                                    ->whereBetween('rmmain.rmmain_daterp', [$this->dateStart, $this->dateEnd])
-                                    ->where('rmmain.status','Y')
-                                    ->orderByDesc('rmmain.rmmain_id')
+            return  Rmlistall::query()->select('rmmain_id','rmmain_dateon','rmmain_time','rmdepname','rmmain_topic','rmmain_detail','rmlevel','clinic_name','fullname','system_name','created_at')
+                                    ->whereBetween('rmmain_daterp', [$this->dateStart, $this->dateEnd])
+                                    ->orderBy('rmmain_daterp', 'asc')
                                     ->limit(9999);
         }else{
-            return  Rmmain::query()->select('rmmain.rmmain_id','rmmain.rmmain_dateon','rmmain.rmmain_time','co_dep.dep_name','rmmain.rmmain_topic','rmmain.rmmain_detail','co_level.level_name','co_level.level_detail','person.person_fname','person.person_lname','rmmain.created_at')
-                                    ->join('co_dep', 'co_dep.dep_code', '=', 'rmmain.rmmain_deprp')
-                                    ->join('co_level', 'co_level.level_code', '=', 'rmmain.level_code')
-                                    ->join('person', 'person.person_cid', '=', 'rmmain.rmmain_cidrp')
-                                    ->whereBetween('rmmain.rmmain_daterp', [$this->dateStart, $this->dateEnd])
-                                    ->where('rmmain.rmmain_deprp',$this->dep)
-                                    ->where('rmmain.status','Y')
-                                    ->orderByDesc('rmmain.rmmain_id')
+            return  Rmlistdep::query()->select('rmmain_id','rmmain_dateon','rmmain_time','rmdepname','rmmain_topic','rmmain_detail','rmlevel','clinic_name','fullname','system_name','created_at')
+                                    ->whereBetween('rmmain_daterp', [$this->dateStart, $this->dateEnd])
+                                    ->where('rmdepcode',$this->dep)
+                                    ->orderBy('rmmain_daterp', 'asc')
                                     ->limit(9999);
         }
     }
@@ -64,15 +58,14 @@ class RmExport implements FromQuery,WithHeadings
             '#CODE',
             'วันที่เกิดเหตุ',
             'เวลาที่เกิดเหตุ',
-            'หน่วยงานที่แจ้งความเสี่ยง',
-            'หัวข้อมเรื่องความเสี่ยง',
+            'หน่วยงานที่เกี่ยวข้อง',
+            'เรื่องความเสี่ยง',
             'รายละเอียดความเสี่ยง',
             'ระดับความเสี่ยง',
-            'รายละเอียดระดับความเสี่ยง',
+            'ประเภท',
             'ชื่อผู้แจ้ง',
-            'นามสกุลผู้แจ้ง',
+            'การทบทวน',
             'วันที่ลงข้อมูล'
         ];
     }
-
 }
