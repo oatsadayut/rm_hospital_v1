@@ -37,7 +37,7 @@ class ManagerrmController extends Controller
         if(Auth::user()->permission >= 3){
              $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
         }else{
-             $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])
+             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
                              ->where('rmmain_cidwr',Auth::user()->cid)
                              ->get();
         }
@@ -72,7 +72,7 @@ class ManagerrmController extends Controller
             }
         }else{
             if($dep == "0"){
-                $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])
+                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
                                 ->where('rmmain_cidwr',Auth::user()->cid)->get();
             }else{
                 $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
