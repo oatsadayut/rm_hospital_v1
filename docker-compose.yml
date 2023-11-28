@@ -1,13 +1,13 @@
 version: '3'
 services:
-  web:
+  rmweb:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
     ports:
-      - "8000:80"
+      - "80:80"
     networks:
       - risk-v1-network
 
