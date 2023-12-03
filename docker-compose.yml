@@ -6,8 +6,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
+    restart: always
     ports:
-      - "80:80"
+      - "8081:80"
     networks:
       - risk-v1-network
 
