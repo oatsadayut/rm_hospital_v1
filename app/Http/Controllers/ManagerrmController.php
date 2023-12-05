@@ -342,54 +342,54 @@ class ManagerrmController extends Controller
 
     }
 
-    public function getdateNew(Request $request)
-    {
-        $date_first = $request->date_first;
-        $date_last = $request->date_last;
-        $dep = $request->dep;
-        $committee = $request->committee;
+    // public function getdate(Request $request)
+    // {
+    //     $date_first = $request->date_first;
+    //     $date_last = $request->date_last;
+    //     $dep = $request->dep;
+    //     $committee = $request->committee;
 
-        $q_person = Person::where('person_cid', Auth::user()->cid)->first();
-
-
-        $q_dep = Co_dep::where('status', 'Y')->get();
-        $q_committee = Co_committee::where('status', 'Y')->get();
-
-        if (Auth::user()->permission == 3 || Auth::user()->permission == 4) {
-            if ($dep == "0") {
-                $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
-            } else {
-                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-                    ->where('rmdepcode', $dep)
-                    ->get();
-            }
-        } else if (Auth::user()->permission == 2) {
-            $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-                ->where('rmdepcode', $q_person->dep_code)
-                ->orWhere('rmmain_cidwr', Auth::user()->cid)
-                ->get();
-        } else {
-            if ($dep == "0") {
-                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-                    ->where('rmmain_cidwr', Auth::user()->cid)->get();
-            } else {
-                $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-                    ->where('rmdepcode', 'LIKE', '%' . $dep . '%')
-                    ->where('rmmain_cidwr', Auth::user()->cid)->get();
-            }
-        }
+    //     $q_person = Person::where('person_cid', Auth::user()->cid)->first();
 
 
-        return view('managerrm.index', [
-            'q' => $q,
-            'date_first' => $date_first,
-            'date_last' => $date_last,
-            'dep' => $dep,
-            'q_dep' => $q_dep,
-            'committee' => $committee,
-            'q_committee' => $q_committee
-        ]);
-    }
+    //     $q_dep = Co_dep::where('status', 'Y')->get();
+    //     $q_committee = Co_committee::where('status', 'Y')->get();
+
+    //     if (Auth::user()->permission == 3 || Auth::user()->permission == 4) {
+    //         if ($dep == "0") {
+    //             $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
+    //         } else {
+    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+    //                 ->where('rmdepcode', $dep)
+    //                 ->get();
+    //         }
+    //     } else if (Auth::user()->permission == 2) {
+    //         $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+    //             ->where('rmdepcode', $q_person->dep_code)
+    //             ->orWhere('rmmain_cidwr', Auth::user()->cid)
+    //             ->get();
+    //     } else {
+    //         if ($dep == "0") {
+    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+    //                 ->where('rmmain_cidwr', Auth::user()->cid)->get();
+    //         } else {
+    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
+    //                 ->where('rmdepcode', 'LIKE', '%' . $dep . '%')
+    //                 ->where('rmmain_cidwr', Auth::user()->cid)->get();
+    //         }
+    //     }
+
+
+    //     return view('managerrm.index', [
+    //         'q' => $q,
+    //         'date_first' => $date_first,
+    //         'date_last' => $date_last,
+    //         'dep' => $dep,
+    //         'q_dep' => $q_dep,
+    //         'committee' => $committee,
+    //         'q_committee' => $q_committee
+    //     ]);
+    // }
 
     public function detail($id)
     {

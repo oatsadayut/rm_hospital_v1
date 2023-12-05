@@ -36,9 +36,9 @@ class RmExport implements FromQuery,WithHeadings
         return $this;
     }
 
-    public function committee(string $committee)
+    public function committee(string $commitTee)
     {
-        $this->committee = $committee;
+        $this->commitTee = $commitTee;
 
         return $this;
     }
