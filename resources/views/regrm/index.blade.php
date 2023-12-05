@@ -148,11 +148,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="rm_effect">ผลกระทบ <span class=" text-danger">*</span></label>
+                                    <label for="rm_effect">ผลกระทบ</label>
                                     <select id="sel-rm4" name="rm_effect" class="form-control" required>
                                         <option value="" disabled selected>กรุณาเลือก</option>
                                         @foreach ($q_effect as $r)
-                                        <option value="{{$r->effect_code}}">{{$r->effect_name}}</option>
+                                        <option value="{{$r->effect_code}}" {{($r->effect_code == 3) ? "selected" : ""}}>{{$r->effect_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -213,7 +213,7 @@
 
 {{------------------------------------------ 5 -------------------------------------------------------------}}
 
-                        <h5><span class=" bg-title-rm0 p-2">5.การเกี่ยวข้อง</span></h5>
+                        <h5><span class=" bg-title-rm0 p-2">5.ส่งความเสี่ยงให้แก้ไข/ทบทวน</span></h5>
                         <hr>
                         <div class="form-row mb-3">
                             <div class="col-md-6">
@@ -228,7 +228,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="rm_committee">กรรมการที่เกี่ยวข้อง</label>
+                                    <label for="rm_committee">กรรมการที่เกี่ยวข้อง <span class=" text-danger">*</span></label>
                                     <select id="sel-rm8" name="rm_committee[]" class="form-control" multiple="multiple" required>
                                         @foreach ($q_committee as $r)
                                         <option value="{{$r->committee_code}}">{{$r->committee_name}}</option>

@@ -36,6 +36,13 @@ class RmExport implements FromQuery,WithHeadings
         return $this;
     }
 
+    public function committee(string $committee)
+    {
+        $this->committee = $committee;
+
+        return $this;
+    }
+
     public function query()
     {
         if($this->dep === "0"){

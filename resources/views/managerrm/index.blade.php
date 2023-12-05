@@ -45,12 +45,29 @@
                                             <option value="0" {{ $dep == '0' ? 'selected' : '' }}>ทั้งหมด</option>
                                             @foreach ($q_dep as $r)
                                                 <option value="{{ $r->dep_code }}"
-                                                    {{ $r->dep_code == $dep ? 'selected' : '' }}>{{ $r->dep_name }}
+                                                    {{ $r->dep_code == $person_dep ? 'selected' : '' }}>{{ $r->dep_name }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="committee">กรรมการ</label>
+                                        <select class="form-control" id="committee" name="committee">
+                                            <option value="0" {{ $committee == '0' ? 'selected' : '' }}>ทั้งหมด
+                                            </option>
+                                            @foreach ($q_committee as $r)
+                                                <option value="{{ $r->committee_code }}"
+                                                    {{ $r->committee_code == $committee ? 'selected' : '' }}>
+                                                    {{ $r->committee_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-3">
                                     <button type="submit" class=" btn btn-primary">ค้นหา</button>
                                     <button type="button" class=" btn btn-success" id="exportbutton">Excel Export</button>
@@ -64,11 +81,10 @@
                                         style="width:100%">
                                         <thead>
                                             <tr>
-
                                                 <th>#รหัส</th>
-
                                                 <th>หัวข้อเหตุการณ์</th>
                                                 <th>หน่วยงานที่เกี่ยวข้อง</th>
+                                                <th>กรรมการ</th>
                                                 <th>วันที่รายงาน</th>
                                                 <th>วันที่เกิดเหตุ</th>
                                                 <th>ความรุนแรง</th>
@@ -83,8 +99,9 @@
                                                     <td class=" bg-title-table" style="width:25%">{{ $r->rmmain_topic }}
                                                     </td>
                                                     <td style="width:21%">{{ $r->rmdepname }}</td>
-                                                    <td style="width:13%">{{ DateThai($r->rmmain_daterp) }}</td>
-                                                    <td style="width:13%">{{ DateThai($r->rmmain_dateon) }}</td>
+                                                    <td style="width:5%">{{ $r->rmcommitteename }}</td>
+                                                    <td style="width:10%">{{ DateThai($r->rmmain_daterp) }}</td>
+                                                    <td style="width:10%">{{ DateThai($r->rmmain_dateon) }}</td>
                                                     @if ($r->level_code == 1)
                                                         <td style="width:7%"><span
                                                                 class="badge c-a">{{ $r->rmlevel }}</span></td>
@@ -166,17 +183,6 @@
                                             @endforeach
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <th>#รหัส</th>
-
-                                                <th>หัวข้อเหตุการณ์</th>
-                                                <th>หน่วยงาน</th>
-                                                <th>วันที่รายงาน</th>
-                                                <th>วันที่เกิดเหตุ</th>
-                                                <th>ความรุนแรง</th>
-                                                <th>ทบทวน</th>
-                                                <th class="bg-foot-b text-light text-center">view</th>
-                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>
