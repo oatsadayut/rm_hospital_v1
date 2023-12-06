@@ -289,6 +289,7 @@ $('#exportbutton').click(function(){
     let dateStart = document.getElementById("dateStart")
     let dateEnd = document.getElementById("dateEnd")
     let dep = document.getElementById("dep")
-    window.open("/rm/export?dateStart="+dateStart.value+"&dateEnd="+dateEnd.value+"&dep="+dep.value, "_blank");
+    let commitTee = document.getElementById("commitTee")
+    window.open("/rm/export?dateStart="+dateStart.value+"&dateEnd="+dateEnd.value+"&dep="+dep.value+"&commitTee="+commitTee.value, "_blank");
 });
 

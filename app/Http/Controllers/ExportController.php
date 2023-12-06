@@ -14,8 +14,8 @@ class ExportController extends Controller
         $dateStart = $request->dateStart;
         $dateEnd = $request->dateEnd;
         $dep = $request->dep;
-        $committee = $request->committee;
-        return Excel::download(new RmExport($dateStart,$dateEnd,$dep,$committee), 'report_export_'+ $dateStart + $dateEnd + $dep + $committee +'.xlsx');
+        $commitTee = $request->commitTee;
+        return Excel::download(new RmExport($dateStart,$dateEnd,$dep,$commitTee), 'report_export_'+ $dateStart +"-"+ $dateEnd +"-"+ $dep + $commitTee +'.xlsx');
     }
 
     public function rmexport(Request $request)
@@ -23,7 +23,7 @@ class ExportController extends Controller
         $dateStart = $request->dateStart;
         $dateEnd = $request->dateEnd;
         $dep = $request->dep;
-        $committee = $request->committee;
-        return (new RmExport)->datestart($dateStart)->dateend($dateEnd)->dep($dep)->committee($committee)->download("rick_export_$dateStart$dateEnd$dep$committee.xlsx");
+        $commitTee = $request->commitTee;
+        return (new RmExport)->datestart($dateStart)->dateend($dateEnd)->dep($dep)->committee($commitTee)->download("rick_export_$dateStart-$dateEnd-$dep$commitTee.xlsx");
     }
 }

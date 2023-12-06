@@ -44,17 +44,23 @@
                                         <select class="form-control" id="dep" name="dep">
                                             <option value="0" {{ $dep == '0' ? 'selected' : '' }}>ทั้งหมด</option>
                                             @foreach ($q_dep as $r)
-                                                <option value="{{ $r->dep_code }}"
-                                                    {{ $r->dep_code == $person_dep ? 'selected' : '' }}>{{ $r->dep_name }}
-                                                </option>
+                                                @if ($permission == 2)
+                                                    <option value="{{ $r->dep_code }}"
+                                                        {{ $r->dep_code == $person_dep ? 'selected' : '' }}>{{ $r->dep_name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $r->dep_code }}"
+                                                        {{ $r->dep_code == $dep ? 'selected' : '' }}>{{ $r->dep_name }}
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group mb-3">
-                                        <label class="input-group-text" for="committee">กรรมการ</label>
-                                        <select class="form-control" id="committee" name="committee">
+                                        <label class="input-group-text" for="commitTee">กรรมการ</label>
+                                        <select class="form-control" id="commitTee" name="committee">
                                             <option value="0" {{ $committee == '0' ? 'selected' : '' }}>ทั้งหมด
                                             </option>
                                             @foreach ($q_committee as $r)
