@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Exports\RmExport;
 use Illuminate\Http\Request;
 
-use App\Exports\RmExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
+
     public function rmindex()
     {
         $dateStart = $request->dateStart;

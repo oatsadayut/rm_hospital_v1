@@ -292,4 +292,3 @@ $('#exportbutton').click(function(){
     let commitTee = document.getElementById("commitTee")
     window.open("/rm/export?dateStart="+dateStart.value+"&dateEnd="+dateEnd.value+"&dep="+dep.value+"&commitTee="+commitTee.value, "_blank");
 });
-

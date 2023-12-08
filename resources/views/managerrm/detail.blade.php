@@ -128,14 +128,20 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ action('PrintrmController@printrm', $q->rmmain_id) }}" target="_blank"
                                             class="btn btn-primary"><i class="fas fa-file-pdf"></i> Print PDF</a>
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#exampleModalScrollable"><i class="fas fa-check-circle"></i>
-                                            ทบทวน</button>
-                                        <a href="{{ action('ManagerrmController@frmupdate', $q->rmmain_id) }}"
-                                            class="btn btn-warning"><i class="fas fa-edit"></i> แก้ไขความเสี่ยง</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#modalcancelrm"><i class="fas fa-times-circle"></i>
-                                            ยกเลิกความเสี่ยง</button>
+
+                                        @if(Auth::user()->permission >= 2)
+                                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#exampleModalScrollable"><i class="fas fa-check-circle"></i>
+                                                ทบทวน</button>
+
+                                            <a href="{{ action('ManagerrmController@frmupdate', $q->rmmain_id) }}"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i> แก้ไขความเสี่ยง</a>
+
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#modalcancelrm"><i class="fas fa-times-circle"></i>
+                                                ยกเลิกความเสี่ยง</button>
+                                        @endif
+
                                     </div>
                                 </h4>
                             </div>

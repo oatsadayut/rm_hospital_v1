@@ -2,14 +2,17 @@
 
 namespace App\Exports;
 
-use App\Rmmain;
-use App\Rmlistall;
-use App\Rmlistdep;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use DB;
+use App\Co_dep;
+use App\Co_committee;
+use App\Person;
+use Illuminate\Support\Facades\Auth;
 
-class RmExport implements FromQuery,WithHeadings
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
+
+class RmExport implements FromView
 {
     use Exportable;
     /**
@@ -43,36 +46,137 @@ class RmExport implements FromQuery,WithHeadings
         return $this;
     }
 
-    public function query()
+    public function view(): View
     {
-        if($this->dep === "0"){
-            return  Rmlistall::query()->select('rmmain_id','rmmain_dateon','rmmain_time','rmdepname','rmmain_topic','rmmain_detail','rmlevel','clinic_name','fullname','system_name','created_at')
-                                    ->whereBetween('rmmain_daterp', [$this->dateStart, $this->dateEnd])
-                                    ->orderBy('rmmain_daterp', 'asc')
-                                    ->limit(9999);
-        }else{
-            return  Rmlistdep::query()->select('rmmain_id','rmmain_dateon','rmmain_time','rmdepname','rmmain_topic','rmmain_detail','rmlevel','clinic_name','fullname','system_name','created_at')
-                                    ->whereBetween('rmmain_daterp', [$this->dateStart, $this->dateEnd])
-                                    ->where('rmdepcode',$this->dep)
-                                    ->orderBy('rmmain_daterp', 'asc')
-                                    ->limit(9999);
-        }
-    }
+        $date_first = $this->dateStart;
+        $date_last = $this->dateEnd;
+        $dep = $this->dep;
+        $committee = $this->commitTee;
 
-    public function headings(): array
-    {
-        return [
-            '#CODE',
-            'วันที่เกิดเหตุ',
-            'เวลาที่เกิดเหตุ',
-            'หน่วยงานที่เกี่ยวข้อง',
-            'เรื่องความเสี่ยง',
-            'รายละเอียดความเสี่ยง',
-            'ระดับความเสี่ยง',
-            'ประเภท',
-            'ชื่อผู้แจ้ง',
-            'การทบทวน',
-            'วันที่ลงข้อมูล'
-        ];
+        $user_cid = Auth::user()->cid;
+        $q_person = Person::where('person_cid', $user_cid)->first();
+        $person_dep = $q_person->dep_code;
+
+        $q_dep = Co_dep::where('status', 'Y')->get();
+        $q_committee = Co_committee::where('status', 'Y')->get();
+
+        $qdep = ($dep == "0" ? "" : "AND rmd.dep_code = $dep");
+        $qcommittee = ($committee == "0" ? "" : "AND rcm.committee_code = $committee");
+
+        $permission = Auth::user()->permission;
+
+        if($permission == 3 || $permission == 4){
+            $q = DB::select( DB::raw("
+                                SELECT 
+                                `r`.`rmmain_id` AS `rmmain_id`,
+                                `r`.`rmmain_dateon` AS `rmmain_dateon`,
+                                `r`.`rmmain_daterp` AS `rmmain_daterp`,
+                                `r`.`rmmain_time` AS `rmmain_time`,
+                                `r`.`rmmain_topic` AS `rmmain_topic`,
+                                `r`.`rmmain_detail` AS `rmmain_detail`,
+                                (SELECT GROUP_CONCAT(rd.dep_code) FROM rmdep rd WHERE rd.rmmain_id = r.rmmain_id AND rd.`status` = 'Y') AS rmdepcode,
+                                (SELECT GROUP_CONCAT(cdep.dep_name) FROM rmdep rd2 INNER JOIN co_dep cdep ON rd2.dep_code = cdep.dep_code WHERE rd2.rmmain_id = r.rmmain_id AND rd2.`status` = 'Y') AS rmdepname,
+                                (SELECT GROUP_CONCAT(rmt.committee_code) FROM rmcommittee rmt WHERE rmt.rmmain_id = r.rmmain_id AND rmt.`status` = 'Y') AS rmcommitteecode,
+                                (SELECT GROUP_CONCAT(cmt.committee_name) FROM rmcommittee rmt2 INNER JOIN co_committee cmt ON rmt2.committee_code = cmt.committee_code WHERE rmt2.rmmain_id = r.rmmain_id AND rmt2.`status` = 'Y') AS rmcommitteename,
+                                `r`.`level_code` AS `level_code`,
+                                `cl`.`level_name` AS `rmlevel`,
+                                `cc`.`clinic_name` AS `clinic_name`,
+                                concat(`p`.`person_fname`,' ',`p`.`person_lname`) AS `fullname`,
+                                `r`.`rmmain_cidrp` AS `rmmain_cidrp`,
+                                `r`.`system_code` AS `system_code`,
+                                `cs`.`system_name` AS `system_name`,
+                                `r`.`created_at` AS `created_at`,
+                                `r`.`status` AS `status` 
+                                FROM rmmain r
+                                INNER JOIN rmdep rmd ON r.rmmain_id = rmd.rmmain_id AND rmd.`status` = 'Y'
+                                INNER JOIN rmcommittee rcm ON r.rmmain_id = rcm.rmmain_id AND rcm.`status` = 'Y'
+                                LEFT OUTER JOIN co_level cl ON r.level_code = cl.level_code
+                                LEFT OUTER JOIN co_clinic cc ON r.clinic_code = cc.clinic_code
+                                LEFT OUTER JOIN person p ON r.rmmain_cidrp = p.person_cid
+                                LEFT OUTER JOIN co_system cs ON r.system_code = cs.system_code
+                                WHERE r.rmmain_daterp BETWEEN '$date_first' AND '$date_last'
+                                $qdep
+                                $qcommittee
+                                AND r.`status` = 'Y'
+                                GROUP BY r.rmmain_id") );
+        }else if($permission == 2){
+            $q = DB::select( DB::raw("
+                                SELECT 
+                                `r`.`rmmain_id` AS `rmmain_id`,
+                                `r`.`rmmain_dateon` AS `rmmain_dateon`,
+                                `r`.`rmmain_daterp` AS `rmmain_daterp`,
+                                `r`.`rmmain_time` AS `rmmain_time`,
+                                `r`.`rmmain_topic` AS `rmmain_topic`,
+                                `r`.`rmmain_detail` AS `rmmain_detail`,
+                                (SELECT GROUP_CONCAT(rd.dep_code) FROM rmdep rd WHERE rd.rmmain_id = r.rmmain_id AND rd.`status` = 'Y') AS rmdepcode,
+                                (SELECT GROUP_CONCAT(cdep.dep_name) FROM rmdep rd2 INNER JOIN co_dep cdep ON rd2.dep_code = cdep.dep_code WHERE rd2.rmmain_id = r.rmmain_id AND rd2.`status` = 'Y') AS rmdepname,
+                                (SELECT GROUP_CONCAT(rmt.committee_code) FROM rmcommittee rmt WHERE rmt.rmmain_id = r.rmmain_id AND rmt.`status` = 'Y') AS rmcommitteecode,
+                                (SELECT GROUP_CONCAT(cmt.committee_name) FROM rmcommittee rmt2 INNER JOIN co_committee cmt ON rmt2.committee_code = cmt.committee_code WHERE rmt2.rmmain_id = r.rmmain_id AND rmt2.`status` = 'Y') AS rmcommitteename,
+                                `r`.`level_code` AS `level_code`,
+                                `cl`.`level_name` AS `rmlevel`,
+                                `cc`.`clinic_name` AS `clinic_name`,
+                                concat(`p`.`person_fname`,' ',`p`.`person_lname`) AS `fullname`,
+                                `r`.`rmmain_cidrp` AS `rmmain_cidrp`,
+                                `r`.`rmmain_cidwr` AS `rmmain_cidwr`,
+                                `r`.`system_code` AS `system_code`,
+                                `cs`.`system_name` AS `system_name`,
+                                `r`.`created_at` AS `created_at`,
+                                `r`.`status` AS `status` 
+                                FROM rmmain r
+                                INNER JOIN rmdep rmd ON r.rmmain_id = rmd.rmmain_id AND rmd.`status` = 'Y'
+                                INNER JOIN rmcommittee rcm ON r.rmmain_id = rcm.rmmain_id AND rcm.`status` = 'Y'
+                                LEFT OUTER JOIN co_level cl ON r.level_code = cl.level_code
+                                LEFT OUTER JOIN co_clinic cc ON r.clinic_code = cc.clinic_code
+                                LEFT OUTER JOIN person p ON r.rmmain_cidrp = p.person_cid
+                                LEFT OUTER JOIN co_system cs ON r.system_code = cs.system_code
+                                WHERE r.rmmain_daterp BETWEEN '$date_first' AND '$date_last'
+                                AND rmd.dep_code = '$person_dep'
+                                $qcommittee
+                                AND r.`status` = 'Y'
+                                GROUP BY r.rmmain_id") );
+        }
+        else{
+            $q = DB::select( DB::raw("
+                                SELECT 
+                                `r`.`rmmain_id` AS `rmmain_id`,
+                                `r`.`rmmain_dateon` AS `rmmain_dateon`,
+                                `r`.`rmmain_daterp` AS `rmmain_daterp`,
+                                `r`.`rmmain_time` AS `rmmain_time`,
+                                `r`.`rmmain_topic` AS `rmmain_topic`,
+                                `r`.`rmmain_detail` AS `rmmain_detail`,
+                                (SELECT GROUP_CONCAT(rd.dep_code) FROM rmdep rd WHERE rd.rmmain_id = r.rmmain_id AND rd.`status` = 'Y') AS rmdepcode,
+                                (SELECT GROUP_CONCAT(cdep.dep_name) FROM rmdep rd2 INNER JOIN co_dep cdep ON rd2.dep_code = cdep.dep_code WHERE rd2.rmmain_id = r.rmmain_id AND rd2.`status` = 'Y') AS rmdepname,
+                                (SELECT GROUP_CONCAT(rmt.committee_code) FROM rmcommittee rmt WHERE rmt.rmmain_id = r.rmmain_id AND rmt.`status` = 'Y') AS rmcommitteecode,
+                                (SELECT GROUP_CONCAT(cmt.committee_name) FROM rmcommittee rmt2 INNER JOIN co_committee cmt ON rmt2.committee_code = cmt.committee_code WHERE rmt2.rmmain_id = r.rmmain_id AND rmt2.`status` = 'Y') AS rmcommitteename,
+                                `r`.`level_code` AS `level_code`,
+                                `cl`.`level_name` AS `rmlevel`,
+                                `cc`.`clinic_name` AS `clinic_name`,
+                                concat(`p`.`person_fname`,' ',`p`.`person_lname`) AS `fullname`,
+                                `r`.`rmmain_cidrp` AS `rmmain_cidrp`,
+                                `r`.`rmmain_cidwr` AS `rmmain_cidwr`,
+                                `r`.`system_code` AS `system_code`,
+                                `cs`.`system_name` AS `system_name`,
+                                `r`.`created_at` AS `created_at`,
+                                `r`.`status` AS `status` 
+                                FROM rmmain r
+                                INNER JOIN rmdep rmd ON r.rmmain_id = rmd.rmmain_id AND rmd.`status` = 'Y'
+                                INNER JOIN rmcommittee rcm ON r.rmmain_id = rcm.rmmain_id AND rcm.`status` = 'Y'
+                                LEFT OUTER JOIN co_level cl ON r.level_code = cl.level_code
+                                LEFT OUTER JOIN co_clinic cc ON r.clinic_code = cc.clinic_code
+                                LEFT OUTER JOIN person p ON r.rmmain_cidrp = p.person_cid
+                                LEFT OUTER JOIN co_system cs ON r.system_code = cs.system_code
+                                WHERE r.rmmain_daterp BETWEEN '$date_first' AND '$date_last'
+                                AND r.rmmain_cidwr = '$user_cid'
+                                $qdep
+                                $qcommittee
+                                AND r.`status` = 'Y'
+                                GROUP BY r.rmmain_id") );
+        }
+
+        return view('excelexport.riskexport', [
+            'q' => $q,
+            'date_first' => $date_first,
+            'date_last' => $date_last
+        ]);
     }
 }

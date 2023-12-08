@@ -30,43 +30,6 @@ use Illuminate\Http\Request;
 
 class ManagerrmController extends Controller
 {
-    // public function index()
-    // {
-    //     $date_first = date('Y-m-01');
-    //     $date_last = date('Y-m-t');
-
-    //     $q_person = Person::where('person_cid', Auth::user()->cid)->first();
-
-    //     if (Auth::user()->permission == 3 || Auth::user()->permission == 4) {
-    //         $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
-    //     } else if (Auth::user()->permission == 2) {
-    //         $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //             ->where('rmdepcode', 'LIKE', '%' . $q_person->dep_code . '%')
-    //             ->get();
-    //     } else {
-    //         $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //             ->where('rmmain_cidwr', Auth::user()->cid)
-    //             ->get();
-    //     }
-
-    //     $q_dep = Co_dep::where('status', 'Y')->get();
-    //     $dep = "0";
-
-    //     $q_committee = Co_committee::where('status', 'Y')->get();
-    //     $committee = "0";
-
-    //     return view('managerrm.index', [
-    //         'q' => $q,
-    //         'date_first' => $date_first,
-    //         'date_last' => $date_last,
-    //         'dep' => $dep,
-    //         'q_dep' => $q_dep,
-    //         'q_committee' => $q_committee,
-    //         'committee' => $committee
-    //     ]);
-    // }
-
-
     public function index(){
         $date_first = date('Y-m-01');
         $date_last = date('Y-m-t');
@@ -112,8 +75,8 @@ class ManagerrmController extends Controller
             LEFT OUTER JOIN co_clinic cc ON r.clinic_code = cc.clinic_code
             LEFT OUTER JOIN person p ON r.rmmain_cidrp = p.person_cid
             LEFT OUTER JOIN co_system cs ON r.system_code = cs.system_code
-            WHERE r.rmmain_daterp BETWEEN '$date_first' AND '$date_last'
-            AND r.`status` = 'Y'
+            WHERE r.rmmain_daterp BETWEEN '$date_first' AND '$date_last' 
+            AND r.`status` = 'Y' 
             GROUP BY r.rmmain_id") );
         }
         else if($permission == 2){
@@ -341,55 +304,6 @@ class ManagerrmController extends Controller
         ]);
 
     }
-
-    // public function getdate(Request $request)
-    // {
-    //     $date_first = $request->date_first;
-    //     $date_last = $request->date_last;
-    //     $dep = $request->dep;
-    //     $committee = $request->committee;
-
-    //     $q_person = Person::where('person_cid', Auth::user()->cid)->first();
-
-
-    //     $q_dep = Co_dep::where('status', 'Y')->get();
-    //     $q_committee = Co_committee::where('status', 'Y')->get();
-
-    //     if (Auth::user()->permission == 3 || Auth::user()->permission == 4) {
-    //         if ($dep == "0") {
-    //             $q = Rmlistall::whereBetween('rmmain_daterp', [$date_first, $date_last])->get();
-    //         } else {
-    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //                 ->where('rmdepcode', $dep)
-    //                 ->get();
-    //         }
-    //     } else if (Auth::user()->permission == 2) {
-    //         $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //             ->where('rmdepcode', $q_person->dep_code)
-    //             ->orWhere('rmmain_cidwr', Auth::user()->cid)
-    //             ->get();
-    //     } else {
-    //         if ($dep == "0") {
-    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //                 ->where('rmmain_cidwr', Auth::user()->cid)->get();
-    //         } else {
-    //             $q = Rmlistdep::whereBetween('rmmain_daterp', [$date_first, $date_last])
-    //                 ->where('rmdepcode', 'LIKE', '%' . $dep . '%')
-    //                 ->where('rmmain_cidwr', Auth::user()->cid)->get();
-    //         }
-    //     }
-
-
-    //     return view('managerrm.index', [
-    //         'q' => $q,
-    //         'date_first' => $date_first,
-    //         'date_last' => $date_last,
-    //         'dep' => $dep,
-    //         'q_dep' => $q_dep,
-    //         'committee' => $committee,
-    //         'q_committee' => $q_committee
-    //     ]);
-    // }
 
     public function detail($id)
     {
