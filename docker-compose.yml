@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rmweb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - risk-v1-network
+
+networks:
+  risk-v1-network:
+    driver: bridge
