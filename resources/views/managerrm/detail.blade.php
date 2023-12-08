@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('function.dathai')
+    @include('function.dathai')
     {{-- Modal --}}
 
     <!-- Modal ทบทวน -->
@@ -39,12 +39,53 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <hr />
+
                             </div>
+                            {{-- <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rm_date_review">วันที่ทบทวน หน่วยงาน</label>
+                                    <input type="date" class="form-control" id="rm_date_review"
+                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
+                                </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="rm_results_review">ผลการทบทวน</label>
-                                    <textarea name="rm_results_review" class=" form-control" rows="7" id="rm_results_review"
-                                        placeholder=" กรุณากรอก ผลการทบทวน" required>{{ $q->rm_results_review }}</textarea>
+                                    <label for="rm_results_dep_team">ผลการทบทวน หน่วยงาน</label>
+                                    <textarea name="rm_results_dep_team" class=" form-control" rows="3" id="rm_results_dep_team"
+                                        placeholder=" กรุณากรอก ผลการทบทวน" required>{{ $q->rm_results_dep_team }}</textarea>
+                                </div>
+                                <hr />
+                            </div>
+
+                            {{-- <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rm_date_review">วันที่ทบทวน ทีมนำ</label>
+                                    <input type="date" class="form-control" id="rm_date_review"
+                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
+                                </div>
+                            </div> --}}
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rm_results_leading_team">ผลการทบทวน ทีมนำ</label>
+                                    <textarea name="rm_results_leading_team" class=" form-control" rows="3" id="rm_results_leading_team"
+                                        placeholder=" กรุณากรอก ผลการทบทวนทีมนำ" required>{{ $q->rm_results_leading_team }}</textarea>
+                                </div>
+                                <hr />
+                            </div>
+
+                            {{-- <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rm_date_review">วันที่ทบทวน ทีมRM</label>
+                                    <input type="date" class="form-control" id="rm_date_review"
+                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
+                                </div>
+                            </div> --}}
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rm_results_review">ผลการทบทวน ทีมRM</label>
+                                    <textarea name="rm_results_review" class=" form-control" rows="3" id="rm_results_review"
+                                        placeholder=" กรุณากรอก ผลการทบทวนทีมRM" required>{{ $q->rm_results_review }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +94,8 @@
                     <div class="modal-footer">
                         <input type="hidden" name="rmmain_id" value="{{ $q->rmmain_id }}">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="summit" id="btn-submit" name="btn-submit" class="btn btn-primary">บันทึกทบทวน</button>
+                        <button type="summit" id="btn-submit" name="btn-submit"
+                            class="btn btn-primary">บันทึกทบทวน</button>
                     </div>
 
                 </form>
@@ -93,7 +135,8 @@
                         <input type="hidden" name="rmmain_id" value="{{ $q->rmmain_id }}">
                         <input type="hidden" name="person_id" value="{{ Auth::user()->person_id }}">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="summit" id="btn-submit" name="btn-submit" class="btn btn-primary">บันทึกทบทวน</button>
+                        <button type="summit" id="btn-submit" name="btn-submit"
+                            class="btn btn-primary">บันทึกทบทวน</button>
                     </div>
 
                 </form>
@@ -126,10 +169,11 @@
                             <div class="col-md-6 text-right">
                                 <h4>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ action('PrintrmController@printrm', $q->rmmain_id) }}" target="_blank"
-                                            class="btn btn-primary"><i class="fas fa-file-pdf"></i> Print PDF</a>
+                                        <a href="{{ action('PrintrmController@printrm', $q->rmmain_id) }}"
+                                            target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Print
+                                            PDF</a>
 
-                                        @if(Auth::user()->permission >= 2)
+                                        @if (Auth::user()->permission >= 2)
                                             <button type="button" class="btn btn-success" data-toggle="modal"
                                                 data-target="#exampleModalScrollable"><i class="fas fa-check-circle"></i>
                                                 ทบทวน</button>
@@ -152,8 +196,9 @@
 
                             <div class="col-md-6">
                                 <h5><span class=" text-secondary"> แหล่งข้อมูล :</span> {{ $q->source->source_name }}</h5>
-                                <h5><span class=" text-secondary"> วัน/เวลา ที่เกิดเหตุ :</span>{{DateThai($q->rmmain_dateon)}}
-                                  เวลา :{{ $q->rmmain_time }} เวร :{{ $q->rm_part_time }}</h5>
+                                <h5><span class=" text-secondary"> วัน/เวลา ที่เกิดเหตุ
+                                        :</span>{{ DateThai($q->rmmain_dateon) }}
+                                    เวลา :{{ $q->rmmain_time }} เวร :{{ $q->rm_part_time }}</h5>
                                 <h5><span class=" text-secondary">สถานที่เกิดเหตุ :</span>
                                     @if ($q->rm_point != null || $q->rm_point != '')
                                         {{ $q->c_dep->dep_name }}
@@ -208,8 +253,8 @@
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="code-rm" data-toggle="tab" href="#code" role="tab"
-                                    aria-controls="code-rm" aria-selected="true">
+                                <a class="nav-link active" id="code-rm" data-toggle="tab" href="#code"
+                                    role="tab" aria-controls="code-rm" aria-selected="true">
                                     <h5 class=" text-secondary"><i class="fas fa-shield-alt text-warningb"></i>
                                         รหัสความเสี่ยง</h5>
                                 </a>
@@ -222,15 +267,16 @@
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="committee-rm" data-toggle="tab" href="#committtee" role="tab"
-                                    aria-controls="committee-rm" aria-selected="false">
+                                <a class="nav-link" id="committee-rm" data-toggle="tab" href="#committtee"
+                                    role="tab" aria-controls="committee-rm" aria-selected="false">
                                     <h5 class=" text-secondary"><i class="fas fa-user-md text-info"></i>
                                         กรรมการที่เกี่ยวข้อง</h5>
                                 </a>
                             </li>
                         </ul>
                         <div class="tab-content py-2 pl-3 bg-detail-rm1" id="myTabContent">
-                            <div class="tab-pane fade show active" id="code" role="tabpanel" aria-labelledby="code-rm">
+                            <div class="tab-pane fade show active" id="code" role="tabpanel"
+                                aria-labelledby="code-rm">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -316,7 +362,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-body ">
@@ -324,7 +369,24 @@
                         <hr>
                         <div class=" row bg-detail-rm p-2">
                             <div class="col-md-12">
-                                <h5><span class=" text-secondary">วันที่ทบทวน : </span>{{DateThai($q->rm_date_review)}}</h5>
+                                <h5><span class=" text-secondary">วันที่ทบทวน : </span>{{ DateThai($q->rm_date_review) }}
+                                </h5>
+                                <h5><span class=" text-secondary">การทบทวน : </span>{{ $q->system->system_name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-body ">
+                        <h5>ทบทวนทีมRM</h5>
+                        <hr>
+                        <div class=" row bg-detail-rm p-2">
+                            <div class="col-md-12">
+                                <h5><span class=" text-secondary">วันที่ทบทวน : </span>{{ DateThai($q->rm_date_review) }}
+                                </h5>
                                 <h5><span class=" text-secondary">การทบทวน : </span>{{ $q->system->system_name }}</h5>
                             </div>
                         </div>
@@ -342,7 +404,42 @@
                 </div>
             </div>
 
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-body ">
+                        <h5>ทบทวนหน่วยงาน</h5>
+                        <hr>
+                        <div class=" row bg-detail-rm p-2">
+                            <div class="col-md-12 mb-3">
+                                <h5><span class=" text-secondary">รายละเอียดทบทวน :</span> </h5>
+                                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{ $q->rm_results_dep_team }}
+                                </h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-body ">
+                        <h5>ทบทวนทีมนำ</h5>
+                        <hr>
+                        <div class=" row bg-detail-rm p-2">
+                            <div class="col-md-12 mb-3">
+                                <h5><span class=" text-secondary">รายละเอียดทบทวน :</span> </h5>
+                                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{ $q->rm_results_leading_team }}
+                                </h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
 @endsection

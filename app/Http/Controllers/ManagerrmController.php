@@ -357,6 +357,8 @@ class ManagerrmController extends Controller
                 ->where('rmmain_id', $id)
                 ->update([
                     'rm_date_review' => $request->rm_date_review,
+                    'rm_results_dep_team' => $request->rm_results_dep_team,
+                    'rm_results_leading_team' => $request->rm_results_leading_team,
                     'rm_results_review' => $request->rm_results_review,
                     'system_code' => $request->rm_review
                 ]);

@@ -152,9 +152,23 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="font-size: 21px;"><b>ผลการทบทวน : </b>
+            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีม RM : </b>
                 @if ($q->rm_results_review !="" || $q->rm_results_review != null)
                     {{$q->rm_results_review}}
+                @endif
+        </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีมนำ : </b>
+                @if ($q->rm_results_leading_team !="" || $q->rm_results_leading_team != null)
+                    {{$q->rm_results_leading_team}}
+                @endif
+        </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 21px;"><b>การทบทวนหน่วยงาน : </b>
+                @if ($q->rm_results_dep_team !="" || $q->rm_results_dep_team != null)
+                    {{$q->rm_results_dep_team}}
                 @endif
         </td>
         </tr>
