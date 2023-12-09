@@ -38,7 +38,6 @@
         background-color: #2196F3;
         padding: 10px;
         }
-
         .grid-container > div {
         background-color: rgba(255, 255, 255, 0.8);
         border: 1px solid black;
