@@ -73,7 +73,17 @@
                 @if ($q->rm_affected_person == null || $q->rm_affected_person == "")
                     ไม่ได้ระบุ
                 @elseif($q->rm_affected_person == 1)
-                    {{$q->affected->affected_name}} เพศ : {{ $q->rm_affected_sex}} อายุ : {{ $q->rm_affected_age}}
+                    {{$q->affected->affected_name}} 
+
+                    @if($q->rm_affected_sex == "1") 
+                        เพศ : ชาย
+                    @elseif($q->rm_affected_sex == "2")
+                        เพศ : หญิง
+                    @else
+                        ไม่ระบุ 
+                    @endif 
+
+                    อายุ : {{ $q->rm_affected_age}}
                 @elseif($q->rm_affected_person > 1)
                     {{$q->affected->affected_name}}
                 @endif
@@ -150,20 +160,7 @@
                 @endif
             </td>
         </tr>
-        <tr>
-            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีม RM : </b>
-                @if ($q->rm_results_review !="" || $q->rm_results_review != null)
-                    {{$q->rm_results_review}}
-                @endif
-        </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีมนำ : </b>
-                @if ($q->rm_results_leading_team !="" || $q->rm_results_leading_team != null)
-                    {{$q->rm_results_leading_team}}
-                @endif
-        </td>
-        </tr>
+
         <tr>
             <td colspan="2" style="font-size: 21px;"><b>การทบทวนหน่วยงาน : </b>
                 @if ($q->rm_results_dep_team !="" || $q->rm_results_dep_team != null)
@@ -171,6 +168,23 @@
                 @endif
         </td>
         </tr>
+
+        <tr>
+            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีมนำ : </b>
+                @if ($q->rm_results_leading_team !="" || $q->rm_results_leading_team != null)
+                    {{$q->rm_results_leading_team}}
+                @endif
+        </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="font-size: 21px;"><b>การทบทวนทีม RM : </b>
+                @if ($q->rm_results_review !="" || $q->rm_results_review != null)
+                    {{$q->rm_results_review}}
+                @endif
+        </td>
+        </tr>
+
       </table>
       <hr>
       <table style="width:100%">

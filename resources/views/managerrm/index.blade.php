@@ -77,7 +77,7 @@
                                 <div class="col-md-3">
                                     <button type="submit" class=" btn btn-primary">ค้นหาข้อมูล</button>
 
-                                    @if($permission > 2) 
+                                    @if($permission >= 2) 
                                         <button type="button" class=" btn btn-success" id="exportbutton">Excel Export</button>
                                     @endif
                                 </div>

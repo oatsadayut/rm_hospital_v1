@@ -34,6 +34,11 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 COPY . /var/www/html
 
 RUN adduser --disabled-password --gecos "" www
+RUN chown -R www:www /var/www/html
+RUN chowd -R 777 /var/www/html/storage
+RUN chowd -R 777 /var/www/html/storage/logs
+RUN chowd -R 777 /var/www/html/storage/logs/laravel.log
+
 USER www
 
 # Set the working directory
