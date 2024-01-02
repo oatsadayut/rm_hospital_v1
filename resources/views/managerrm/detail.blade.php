@@ -20,14 +20,14 @@
 
                     <div class="modal-body">
                         <div class="form-row mb-3">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="rm_date_review">วันที่ทบทวน</label>
                                     <input type="date" class="form-control" id="rm_date_review"
                                         value="{{ $q->rm_date_review }}" name="rm_date_review" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="rm_review">ทบทวน</label>
                                     <select id="sel-22" name="rm_review" class="form-control" required>
@@ -42,49 +42,27 @@
                                 <hr />
 
                             </div>
-                            {{-- <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="rm_date_review">วันที่ทบทวน หน่วยงาน</label>
-                                    <input type="date" class="form-control" id="rm_date_review"
-                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
-                                </div>
-                            </div> --}}
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="rm_results_dep_team">ผลการทบทวน หน่วยงาน</label>
-                                    <textarea name="rm_results_dep_team" class=" form-control" rows="3" id="rm_results_dep_team"
+                                    <textarea name="rm_results_dep_team" class=" form-control" rows="2" id="rm_results_dep_team"
                                         placeholder=" กรุณากรอก ผลการทบทวน" required>{{ $q->rm_results_dep_team }}</textarea>
                                 </div>
-                                <hr />
                             </div>
 
-                            {{-- <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="rm_date_review">วันที่ทบทวน ทีมนำ</label>
-                                    <input type="date" class="form-control" id="rm_date_review"
-                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
-                                </div>
-                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="rm_results_leading_team">ผลการทบทวน ทีมนำ</label>
-                                    <textarea name="rm_results_leading_team" class=" form-control" rows="3" id="rm_results_leading_team"
+                                    <textarea name="rm_results_leading_team" class=" form-control" rows="2" id="rm_results_leading_team"
                                         placeholder=" กรุณากรอก ผลการทบทวนทีมนำ" required>{{ $q->rm_results_leading_team }}</textarea>
                                 </div>
-                                <hr />
                             </div>
 
-                            {{-- <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="rm_date_review">วันที่ทบทวน ทีมRM</label>
-                                    <input type="date" class="form-control" id="rm_date_review"
-                                        value="{{ $q->rm_date_review }}" name="rm_date_review" required>
-                                </div>
-                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="rm_results_review">ผลการทบทวน ทีมRM</label>
-                                    <textarea name="rm_results_review" class=" form-control" rows="3" id="rm_results_review"
+                                    <textarea name="rm_results_review" class=" form-control" rows="2" id="rm_results_review"
                                         placeholder=" กรุณากรอก ผลการทบทวนทีมRM" required>{{ $q->rm_results_review }}</textarea>
                                 </div>
                             </div>

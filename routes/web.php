@@ -38,13 +38,17 @@ Route::group(['middleware' => ['user']], function () {
     Route::get('/rm/report/pdf/deprm','PrintrmController@report_dep_summary_rm')->name('report_dep_summary_rm');
     Route::get('/rm/report/pdf/committeerm','PrintrmController@report_committee_summary_rm')->name('report_committee_summary_rm');
 
-
-
     //Report Chart
     Route::get('/rm/getdep','ReportController@Getdep')->name('api.getdep');
 
     //LOG
     Route::post('/log/cancel-rm', 'LogrmController@log_cancel_rm')->name('log_cancel_rm'); //การยกเลิก Rm
+});
+
+Route::group(['middleware' => ['member']], function () {
+    //Export RM
+    Route::get('/rm/export/viewer', 'ExportController@rmindex')->name('view-export-rm');
+    Route::get('/rm/export', 'ExportController@rmexport')->name('export-rm');
 });
 
 Route::group(['middleware' => ['admin']], function () {
@@ -68,10 +72,6 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/user/block', 'UserController@block')->name('user-block');
 
     Route::post('/user/edit', 'UserController@edit')->name('user-edit');
-
-    //Export RM
-    Route::get('/rm/export/viewer', 'ExportController@rmindex')->name('view-export-rm');
-    Route::get('/rm/export', 'ExportController@rmexport')->name('export-rm');
 
     //ตั้งค่ารหัสความเสี่ยง
     Route::get('/rmcode','RmcodeController@index')->name('rmcode');
